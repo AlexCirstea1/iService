@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iService3.Views.About"
+             Title="About"
+             BackgroundColor="#1e1e1e">
+    <VerticalStackLayout>
+        <Button
+            Text="Back"
+            VerticalOptions="Center"
+            BackgroundColor="#111111"
+            TextColor="#8B9A46"
+            FontFamily="coolvetica"
+            FontSize="20"
+            Pressed="Button_Pressed"
+            Margin="100,10,100,10">
+            <Button.Shadow>
+                <Shadow Brush="Black"
+                Radius="15"
+                Opacity="0.6" />
+            </Button.Shadow>
+        </Button>
+        <Label
+            Text="Text for about page"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
