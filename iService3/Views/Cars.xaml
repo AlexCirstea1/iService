@@ -16,6 +16,7 @@
             x:Name="addBtn"
             Text="Add Car"
             HorizontalOptions="Center"
+            Clicked="addBtn_Clicked"
             WidthRequest="300"
             Margin="15"
             FontFamily="coolvetica"

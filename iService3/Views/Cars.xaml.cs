@@ -6,4 +6,9 @@ public partial class Cars : ContentPage
     {
         InitializeComponent();
     }
+
+    private async void addBtn_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new CarForm());
+    }
 }

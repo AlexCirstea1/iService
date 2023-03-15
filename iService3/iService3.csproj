@@ -70,6 +70,9 @@
 	  <MauiXaml Update="Views\Account.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CarForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Cars.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
