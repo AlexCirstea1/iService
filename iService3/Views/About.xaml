@@ -21,7 +21,7 @@
             </Button.Shadow>
         </Button>
         <Label
-            Text="Text for about page"
+            Text="Information for about page"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             TextColor="White" />
