@@ -1,5 +1,4 @@
-﻿using iService3.Data;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace iService3;
 
@@ -20,11 +19,8 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+        //builder.Services.AddHttpClient("api", httpClient => httpClient.BaseAddress = new Uri("https://localhost:7169/api");
 
-        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "game.db");
-
-        builder.Services.AddSingleton(s =>
-        ActivatorUtilities.CreateInstance<UserRepository>(s,dbPath));   
 
         return builder.Build();
     }
