@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iService_Windows.Views.Cars"
+             BackgroundColor="#1e1e1e">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label               
+                Margin="30"
+                Text="List of Cars"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                FontFamily="coolvetica"
+                FontSize="30"
+                TextColor="White" />
+            <AbsoluteLayout>
+                <ImageButton
+                    AbsoluteLayout.LayoutBounds="350,30"
+                    Source="refresh.svg"                
+                    Clicked="ImageButton_Clicked"/>
+                <Button
+                    AbsoluteLayout.LayoutBounds="13,5"
+                    x:Name="addBtn"
+                    Text="Add Car"
+                    HorizontalOptions="Center"
+                    Clicked="addBtn_Clicked"
+                    WidthRequest="300"
+                    Margin="15"
+                    FontFamily="coolvetica"
+                    FontSize="19"
+                    TextColor="#8B9A46"
+                    BackgroundColor="#111111">
+                    <Button.Shadow>
+                        <Shadow Brush="Black"
+                                Radius="20"
+                                Opacity="0.8" />
+                    </Button.Shadow>
+                </Button>
+            </AbsoluteLayout>
+
+            <ListView x:Name="carsListView"
+                  Margin="20"
+                  SeparatorVisibility="None"
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                            BackgroundColor="#111111"
+                            BorderColor="#8B9A46"
+                            CornerRadius="15"
+                            Margin="25,20,25,0">
+                                <StackLayout Margin="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="80"/>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Text="{Binding Manufacturer}" FontSize="20" TextColor="White"/>
+                                        <Label 
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Text="{Binding Model}" FontSize="16" TextColor="Gray"/>
+                                        <Label 
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            Text="{Binding Year}" FontSize="16" TextColor="Gray"/>
+                                        <Button
+                                            x:Name="ScheduleAppointmentBtn"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Text="Schedule Appointment"
+                                            FontSize="15"
+                                            LineBreakMode="WordWrap"
+                                            WidthRequest="120"
+                                            HeightRequest="60"
+                                            BackgroundColor="#1e1e1e"
+                                            Clicked="ScheduleAppointmentBtn_Clicked"/>
+                                        <Button
+                                            x:Name="UpdateBtn"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="Update"
+                                            FontSize="16"
+                                            LineBreakMode="WordWrap"
+                                            WidthRequest="120"
+                                            HeightRequest="40"
+                                            BackgroundColor="#1e1e1e"
+                                            Clicked="UpdateBtn_Clicked"/>
+                                        <Button
+                                            x:Name="DeleteBtn"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="Delete"
+                                            FontSize="16"
+                                            WidthRequest="120"
+                                            HeightRequest="40"
+                                            LineBreakMode="WordWrap"
+                                            BackgroundColor="#1e1e1e"
+                                            TextColor="IndianRed"
+                                            Clicked="DeleteBtn_Clicked"/>
+                                    </Grid>
+                                </StackLayout>
+
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -31,10 +31,19 @@ public partial class Account : ContentPage
             Pass = password
         };
 
-        var token = await userService.Login(user);
-     
+        var userData = await userService.Login(user);
+
+        var userID = userData.UserId;
+        var userName = userData.Username;
+        var token = userData.Token;
+
+
+
         var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(30));
-        cache.Set("UserID",token,cacheEntryOptions);
+
+        cache.Set("username", userName, cacheEntryOptions);
+        cache.Set("userID", userID, cacheEntryOptions);
+        cache.Set("token", token, cacheEntryOptions);
     }
 
     private void RegisterButton_Clicked(object sender, EventArgs e)

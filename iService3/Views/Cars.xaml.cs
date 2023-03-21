@@ -16,10 +16,10 @@ public partial class Cars : ContentPage
         LoadCars();
     }
 
-    private async void GetUserTokenAsync()
+    private void GetUserToken()
     {
         cache.TryGetValue("token", out string token);
-        if(token != null)
+        if (token != null)
         {
             USER_TOKEN = token;
         }
@@ -31,7 +31,7 @@ public partial class Cars : ContentPage
         carsListView.ItemsSource = null;
         try
         {
-            GetUserTokenAsync();
+            GetUserToken();
             if(USER_TOKEN != null)
             {
                 var cars = await _carService.GetCarsByUserToken(USER_TOKEN);

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iService_Windows.Views.Home"
+             BackgroundColor="#1e1e1e">
+    <VerticalStackLayout>
+        <Grid Margin="0,10,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <BoxView Grid.Row="0" Grid.Column="2" Color="#1e1e1e" />
+            <ImageButton
+                Grid.Row="0"
+                Grid.Column="2"
+                Source="about.png"
+                HeightRequest="40"
+                Pressed="ImageButton_Pressed" />
+        </Grid>
+
+        <Label
+            Text="Welcome"
+            TextColor="AliceBlue"
+            FontFamily="DESIGNER"
+            FontSize="50"
+            HorizontalOptions="Center"
+            Margin="0,10,0,10" />
+
+        <Grid Margin="10,70,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="#111111"
+                Text="Good Afternoon, Alexandru"
+                FontSize="17"
+                LineBreakMode="WordWrap"
+                WidthRequest="170"
+                HeightRequest="100"
+                Margin="0,0,0,20"
+                >
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                Radius="20"
+                Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="#111111"
+                Text="Export data"
+                FontSize="18"
+                LineBreakMode="WordWrap"
+                WidthRequest="170"
+                HeightRequest="100"
+                Margin="0,0,0,20"
+                >
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                Radius="20"
+                Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="#111111"
+                Text="Navigate to the nearest service"
+                FontSize="18"
+                LineBreakMode="WordWrap"
+                WidthRequest="170"
+                HeightRequest="100"
+                >
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                Radius="20"
+                Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="#111111"
+                Text="Add new data"
+                FontSize="18"
+                LineBreakMode="WordWrap"
+                WidthRequest="170"
+                HeightRequest="100"
+                >
+                <Button.Shadow>
+                    <Shadow Brush="Black"
+                Radius="20"
+                Opacity="0.7" />
+                </Button.Shadow>
+            </Button>
+        </Grid>
+
+        <Map
+            Margin="10,20,10,0"
+            HeightRequest="280"
+            IsShowingUser="True">
+
+        </Map>
+    </VerticalStackLayout>
+</ContentPage>

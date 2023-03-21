@@ -67,7 +67,7 @@ namespace iService3.Services
         //    return result;
         //}
 
-        public async Task<string> Login(User user)
+        public async Task<User> Login(User user)
         {
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -75,9 +75,9 @@ namespace iService3.Services
           
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var tokenModel = JsonConvert.DeserializeObject<string>(responseString);
+            var userObj = JsonConvert.DeserializeObject<User>(responseString);
 
-            return tokenModel;
+            return userObj;
         }
 
         public async Task<bool> Logout()
