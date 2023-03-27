@@ -9,34 +9,22 @@ public partial class Cars : ContentPage
 {
     private readonly CarService _carService = new CarService();
     private string USER_TOKEN;
-    private MemoryCache cache = new MemoryCache(new MemoryCacheOptions());
     public Cars()
     {
         InitializeComponent();
         LoadCars();
     }
 
-    private void GetUserToken()
-    {
-        cache.TryGetValue("token", out string token);
-        if (token != null)
-        {
-            USER_TOKEN = token;
-        }
-    }
-
     async void LoadCars()
     {
-
-        carsListView.ItemsSource = null;
         try
         {
-            GetUserToken();
-            if(USER_TOKEN != null)
+            var cars = await _carService.GetCarsByUserId(29);          
+            foreach (var car in cars)
             {
-                var cars = await _carService.GetCarsByUserToken(USER_TOKEN);
-                carsListView.ItemsSource = cars;
-            }          
+                car.ImageUrl = await _carService.GetCarImageUrl(car.Manufacturer);
+            }
+            carsListView.ItemsSource = cars;
         }
         catch (Exception ex)
         {
@@ -44,18 +32,6 @@ public partial class Cars : ContentPage
         }
     }
 
-    //[Obsolete]
-    //private void LoadCars()
-    //{
-    //    Task.Run(async () =>
-    //    {
-    //        List<Car> cars = await _carService.GetCars();
-    //        Device.BeginInvokeOnMainThread(() =>
-    //        {
-    //            carsListView.ItemsSource = cars;
-    //        });
-    //    });
-    //}
     private async void addBtn_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new CarForm());
@@ -74,15 +50,15 @@ public partial class Cars : ContentPage
     private async void DeleteBtn_Clicked(object sender, EventArgs e)
     {
         var car = (sender as Button)?.BindingContext as Car;
-
-        if(car != null)
+        if (car != null && await DisplayAlert("Confirmation", $"Are you sure you want to delete {car.Manufacturer} {car.Model}?", "Yes", "No"))
         {
             await _carService.DeleteCar(car.CarId);
+            //LoadCars();
         }
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        
+        LoadCars();
     }
 }

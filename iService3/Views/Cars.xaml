@@ -5,7 +5,7 @@
              BackgroundColor="#1e1e1e">
     <ScrollView>
         <VerticalStackLayout>
-            <Label               
+            <Label
                 Margin="30"
                 Text="List of Cars"
                 VerticalOptions="Center"
@@ -16,8 +16,8 @@
             <AbsoluteLayout>
                 <ImageButton
                     AbsoluteLayout.LayoutBounds="350,30"
-                    Source="refresh.svg"                
-                    Clicked="ImageButton_Clicked"/>
+                    Source="refresh.svg"
+                    Clicked="ImageButton_Clicked" />
                 <Button
                     AbsoluteLayout.LayoutBounds="13,5"
                     x:Name="addBtn"
@@ -39,42 +39,56 @@
             </AbsoluteLayout>
 
             <ListView x:Name="carsListView"
-                  Margin="20"
-                  SeparatorVisibility="None"
+                  SeparatorVisibility="Default"
+                  SeparatorColor="Black"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                            <Frame
-                            BackgroundColor="#111111"
-                            BorderColor="#8B9A46"
-                            CornerRadius="15"
-                            Margin="25,20,25,0">
-                                <StackLayout Margin="10">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="80"/>
-                                            <RowDefinition Height="50"/>
-                                            <RowDefinition Height="50"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid Margin="30,10,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image
                                             Grid.Row="0"
                                             Grid.Column="0"
-                                            Text="{Binding Manufacturer}" FontSize="20" TextColor="White"/>
-                                        <Label 
+                                            HeightRequest="90" WidthRequest="90" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding ImageUrl}"></UriImageSource>
+                                        </Image.Source>
+                                    </Image>
+                                    <Grid
                                             Grid.Row="1"
                                             Grid.Column="0"
-                                            Text="{Binding Model}" FontSize="16" TextColor="Gray"/>
-                                        <Label 
-                                            Grid.Row="2"
-                                            Grid.Column="0"
-                                            Text="{Binding Year}" FontSize="16" TextColor="Gray"/>
-                                        <Button
+                                            Margin="0,5,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.Row="0" Grid.Column="0"
+                                            Text="{Binding Manufacturer}" FontSize="20" TextColor="White" />
+                                        <Label
+                                            Grid.Row="1" Grid.Column="0"
+                                            Text="{Binding Model}" FontSize="16" TextColor="Gray" />
+                                    </Grid>
+
+                                    <Label
+                                            Grid.Row="2" Grid.Column="0"
+                                            Text="{Binding Year}" FontSize="16" TextColor="Gray" />
+                                    <Button
                                             x:Name="ScheduleAppointmentBtn"
                                             Grid.Row="0"
                                             Grid.Column="1"
@@ -83,9 +97,9 @@
                                             LineBreakMode="WordWrap"
                                             WidthRequest="120"
                                             HeightRequest="60"
-                                            BackgroundColor="#1e1e1e"
-                                            Clicked="ScheduleAppointmentBtn_Clicked"/>
-                                        <Button
+                                            BackgroundColor="#111111"
+                                            Clicked="ScheduleAppointmentBtn_Clicked" />
+                                    <Button
                                             x:Name="UpdateBtn"
                                             Grid.Row="1"
                                             Grid.Column="1"
@@ -94,9 +108,9 @@
                                             LineBreakMode="WordWrap"
                                             WidthRequest="120"
                                             HeightRequest="40"
-                                            BackgroundColor="#1e1e1e"
-                                            Clicked="UpdateBtn_Clicked"/>
-                                        <Button
+                                            BackgroundColor="#111111"
+                                            Clicked="UpdateBtn_Clicked" />
+                                    <Button
                                             x:Name="DeleteBtn"
                                             Grid.Row="2"
                                             Grid.Column="1"
@@ -105,17 +119,15 @@
                                             WidthRequest="120"
                                             HeightRequest="40"
                                             LineBreakMode="WordWrap"
-                                            BackgroundColor="#1e1e1e"
+                                            BackgroundColor="#111111"
                                             TextColor="IndianRed"
-                                            Clicked="DeleteBtn_Clicked"/>
-                                    </Grid>
-                                </StackLayout>
-                                
-                            </Frame>
+                                            Clicked="DeleteBtn_Clicked" />
+                                </Grid>
+                            </StackLayout>
                         </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

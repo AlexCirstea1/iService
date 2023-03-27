@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -61,13 +62,14 @@ namespace iService3.Services
             return cars;
         }
 
-        public async Task<Car> InsertCar(Car car)
+        public async Task<bool> InsertCar(Car car)
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/Car/InsertCar", car);
-            response.EnsureSuccessStatusCode();
+            var json = JsonConvert.SerializeObject(car);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            Car newCar = await response.Content.ReadAsAsync<Car>();
-            return newCar;
+            var response = await _httpClient.PostAsync("api/Car/InsertCar", content);
+
+            return true;
         }
 
         public async Task UpdateCar(int id, Car car)
@@ -81,5 +83,16 @@ namespace iService3.Services
             HttpResponseMessage response = await _httpClient.DeleteAsync($"api/Car/DeleteCar/{id}");
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task<string> GetCarImageUrl(string carName)
+        {
+
+            var content = await _httpClient.GetStringAsync($"api/Logo/{carName}");
+            if(content == null )
+                return null;
+            return content.Trim('"');
+
+        }
+
     }
 }

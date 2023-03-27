@@ -31,13 +31,14 @@
             FontSize="17">
         </Entry>
         <Button 
-                x:Name="addCarBtn" 
-                Text="ADD" 
-                Margin="0,30,0,0"
-                FontFamily="coolvetica"
-                FontSize="19"
-                TextColor="#1da7c1"
-                BackgroundColor="#111111">
+                    x:Name="addCarBtn" 
+                    Text="ADD" 
+                    Margin="0,30,0,0"
+                    FontFamily="coolvetica"
+                    FontSize="19"
+                    TextColor="#1da7c1"
+                    BackgroundColor="#111111"
+            Clicked="addCarBtn_Clicked">
         </Button>
 
     </VerticalStackLayout>

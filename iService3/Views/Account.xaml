@@ -5,10 +5,28 @@
              BackgroundColor="#1e1e1e">
     <StackLayout
         Margin="20,20,20,0">
-        <Entry x:Name="UsernameEntry" Placeholder="Username" Margin="0,0,0,10" />
-        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Margin="0,0,0,10"/>
-        <Button x:Name="LoginButton" Text="Login" Clicked="LoginButton_Clicked" Margin="0,0,0,10"/>
-        <Button x:Name="RegisterButton" Text="Register" Clicked="RegisterButton_Clicked" Margin="0,0,0,10"/>
-        <Button x:Name="LogOut" Text="LogOut" Clicked="LogOut_Clicked"  Margin="0,0,0,10"/>
+        <Entry x:Name="UsernameEntry" Placeholder="Username" Margin="0,0,0,10" FontSize="17" FontFamily="coolvetica"/>
+        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Margin="0,0,0,10" FontSize="17" FontFamily="coolvetica"/>
+        <Button x:Name="LoginButton" Text="Login" Clicked="LoginButton_Clicked" Margin="0,0,0,10" FontSize="19" FontFamily="coolvetica"/>
+        <Label
+            x:Name="RegisterLabel"
+            HorizontalOptions="Center"
+            FontSize="17"
+            Padding="0,10,0,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Don't have an account? Register " TextColor="White"/>
+                    <Span Text="here"
+                  TextColor="#8B9A46"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="https://learn.microsoft.com/dotnet/maui/" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span TextColor="White" Text="." />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </StackLayout>
 </ContentPage>
