@@ -19,8 +19,8 @@ namespace iService3.Models
         public int Year { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual ICollection<Appointment> Appointments { get; } = new List<Appointment>();
+        //public virtual ICollection<Appointment> Appointments { get; } = new List<Appointment>();
 
-        public virtual User User { get; set; } = null!;
+        //public virtual User User { get; set; } = null!;
     }
 }

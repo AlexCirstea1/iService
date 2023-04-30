@@ -6,18 +6,18 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using iService3.Tools;
 
 namespace iService3.Services
 {
     public class CarService
     {
         private HttpClient _httpClient;
+        private HttpConnectionServer _connection;
         public CarService()
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("https://iservice-api.azurewebsites.net")
-            };
+            _connection = new HttpConnectionServer();
+            _httpClient = _connection.GetHttpClient();
         }
 
         public async Task<List<Car>> GetCars()
@@ -61,16 +61,31 @@ namespace iService3.Services
             var cars = JsonConvert.DeserializeObject<List<Car>>(json);
             return cars;
         }
-
-        public async Task<bool> InsertCar(Car car)
+        public async Task<bool> AddCar(Car car)
         {
-            var json = JsonConvert.SerializeObject(car);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var data = new
+            {
+                UserId = car.UserId,
+                Manufacturer = car.Manufacturer,
+                Model = car.Model,
+                Year = car.Year
+            };
 
+            var jsonContent = JsonConvert.SerializeObject(data);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            
             var response = await _httpClient.PostAsync("api/Car/InsertCar", content);
 
-            return true;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
 
         public async Task UpdateCar(int id, Car car)
         {
@@ -92,6 +107,15 @@ namespace iService3.Services
                 return null;
             return content.Trim('"');
 
+        }
+        public async Task<List<string>> GetCarManufacturers()
+        {
+            var response = await _httpClient.GetAsync("api/Logo/GetCarManufacturers");
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            var manufacturers = JsonConvert.DeserializeObject<List<string>>(json);
+            return manufacturers;
         }
 
     }

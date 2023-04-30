@@ -17,7 +17,9 @@
             <ShellContent ContentTemplate="{DataTemplate local:Cars}" />
         </Tab>
         <Tab Title="Account" Icon="account.svg">
-            <ShellContent ContentTemplate="{DataTemplate local:Account}" />
+            <ShellContent ContentTemplate="{DataTemplate local:Account}" Route="account">
+                <ShellContent Route="accountinfo" ContentTemplate="{DataTemplate local:AccountInfo}" />
+            </ShellContent>
         </Tab>
     </TabBar>
 </Shell>

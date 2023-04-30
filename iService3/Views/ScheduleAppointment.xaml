@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="iService3.Views.ScheduleAppointment"
+             BackgroundImageSource="pattern.svg">
+    <StackLayout
+        HorizontalOptions="Center"
+        Margin="10,200,10,10">
+
+        <Label Text="Schedule Appointment" FontSize="Large" Margin="0,10" TextColor="#ACACAC" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+        <DatePicker
+            x:Name="datePicker" 
+            TextColor="#ACACAC" FontSize="19" FontFamily="coolvetica" Margin="0,60,0,0"/>
+        <TimePicker
+            x:Name="timePicker"
+            TextColor="#ACACAC" FontSize="19" FontFamily="coolvetica" Margin="0,10,0,0"></TimePicker>
+
+        <Entry x:Name="typeEntry" TextColor="#ACACAC" Placeholder="Type" PlaceholderColor="#ACACAC" FontSize="17" FontFamily="coolvetica" Margin="0,10,0,0"/>
+
+        <Editor x:Name="notesEditor" TextColor="#ACACAC" Placeholder="Notes" PlaceholderColor="#ACACAC" FontSize="17" FontFamily="coolvetica" Margin="0,10,0,0"/>
+
+        <!--<Entry x:Name="serviceNameEntry" TextColor="#ACACAC" Placeholder="Service" PlaceholderColor="#ACACAC" FontSize="17" FontFamily="coolvetica" Margin="0,10,0,20"/>-->
+
+        <Picker
+            x:Name="Picker"
+            TextColor="#ACACAC"
+            Margin="0,0,0,20"
+            Title="Select service"
+            TitleColor="#ACACAC"
+            FontSize="17" FontFamily="coolvetica"
+            ItemsSource="{Binding Services}"
+            SelectedItem="{Binding SelectedService}">
+
+        </Picker>
+
+
+        <Button Text="Save" Clicked="SaveButton_Clicked" FontSize="19" FontFamily="coolvetica" 
+                TextColor="White" BorderColor="#00bfff"
+                BorderWidth="1" Margin="0,0,0,20"/>
+
+        <Button x:Name="CancelBtn" Text="Cancel" Clicked="CancelBtn_OnClicked"  FontSize="19" FontFamily="coolvetica" 
+                TextColor="White" BorderColor="#00bfff"
+                BorderWidth="1"/>
+    </StackLayout>
+</ContentPage>

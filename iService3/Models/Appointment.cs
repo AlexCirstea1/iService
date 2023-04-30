@@ -13,6 +13,7 @@ namespace iService3.Models
         public int CarId { get; set; }
 
         public int UserId { get; set; }
+        public string ServiceName { get; set; }
 
         public DateTime AppointmentDate { get; set; }
 
@@ -27,5 +28,6 @@ namespace iService3.Models
         public virtual Service Service { get; set; } = null!;
 
         public virtual User User { get; set; } = null!;
+        public string CarName { get; set; }
     }
 }

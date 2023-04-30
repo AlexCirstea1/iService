@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="iService3.Views.Cars"
-             BackgroundColor="#1e1e1e">
+             BackgroundImageSource="pattern.svg">
     <ScrollView>
         <VerticalStackLayout>
             <Label
                 Margin="30"
-                Text="List of Cars"
+                Text="My Cars"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 FontFamily="coolvetica"
@@ -28,8 +28,10 @@
                     Margin="15"
                     FontFamily="coolvetica"
                     FontSize="19"
-                    TextColor="#8B9A46"
-                    BackgroundColor="#111111">
+                    TextColor="White"
+                    BackgroundColor="#111111"
+                    BorderColor="#00bfff"
+                    BorderWidth="1">
                     <Button.Shadow>
                         <Shadow Brush="Black"
                                 Radius="20"

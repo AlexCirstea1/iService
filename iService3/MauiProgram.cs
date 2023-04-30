@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Net;
 
 namespace iService3;
 
@@ -6,6 +7,8 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+        
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()

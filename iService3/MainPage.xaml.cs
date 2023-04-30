@@ -1,23 +1,48 @@
-﻿namespace iService3;
+﻿using iService3.Services;
+using iService3.Tools;
+using iService3.Views;
+using Newtonsoft.Json;
+
+namespace iService3;
 
 public partial class MainPage : ContentPage
 {
-    private int count = 0;
-
+    UserService userService = new UserService();
+    private SecureStorageToolKit _secureStorageToolKit;
     public MainPage()
     {
         InitializeComponent();
     }
-
-    private void OnCounterClicked(object sender, EventArgs e)
+    public void GoToAppShell()
     {
-        count++;
+        var appShell = new AppShell();
+        Application.Current.MainPage = appShell;
+    }
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+    private async void LoginButton_Clicked(object sender, EventArgs e)
+    {
+        string username = UsernameEntry.Text;
+        string password = PasswordEntry.Text;
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        var userData = await userService.Login(username, password);
+
+        string userJson = JsonConvert.SerializeObject(userData);
+        Preferences.Set("userData",userJson);
+
+        //_secureStorageToolKit.SaveUserID(userData.UserId.ToString());
+        //_secureStorageToolKit.SaveUsername(userData.Username);
+        //_secureStorageToolKit.SaveToken(userData.Token);
+        //testLabel.Text = _secureStorageToolKit.GetUsername().ToString();
+
+        await SecureStorage.Default.SetAsync("UserID", userData.UserId);
+        await SecureStorage.Default.SetAsync("Username", userData.Username);
+        await SecureStorage.Default.SetAsync("Token", userData.Token);
+
+        GoToAppShell();
+    }
+
+    private async void Register(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new RegisterPage());
     }
 }

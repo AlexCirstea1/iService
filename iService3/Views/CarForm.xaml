@@ -3,32 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="iService3.Views.CarForm"
              Title="CarForm"
-             BackgroundImageSource="background5">
-    <VerticalStackLayout
-        Margin="30,140,30,340"
+             BackgroundImageSource="pattern.svg">
+    <Frame
+        Margin="30,200,30,280"
         Padding="25"
         BackgroundColor="#1d232b"
-        >
-        <Entry 
-            x:Name ="Manufacturer" 
-            Placeholder="Manufacturer" 
-            Margin="0,20,0,0"
-            FontFamily="coolvetica"
-            FontSize="17">
-        </Entry>
+        BorderColor="#00bfff">
+    <VerticalStackLayout
+        
+        BackgroundColor="#1d232b"
+    >
+        <Picker x:Name="manufacturerPicker"
+                Title="Select a Manufacturer"
+                ItemsSource="{Binding Manufacturers}"
+                SelectedItem="{Binding SelectedManufacturer}"
+                Margin="0,20,0,0"
+                FontFamily="coolvetica"
+                FontSize="17"
+                TextColor="White"
+                TitleColor="White">
+        </Picker>
         <Entry 
             x:Name ="Model" 
             Placeholder="Model" 
             Margin="0,20,0,0"
             FontFamily="coolvetica"
-            FontSize="17">
+            FontSize="17"
+            TextColor="White">
         </Entry>
         <Entry 
             x:Name ="Year" 
             Placeholder="Year" 
             Margin="0,20,0,0" 
             FontFamily="coolvetica"
-            FontSize="17">
+            FontSize="17"
+            TextColor="White">
         </Entry>
         <Button 
                     x:Name="addCarBtn" 
@@ -36,11 +45,11 @@
                     Margin="0,30,0,0"
                     FontFamily="coolvetica"
                     FontSize="19"
-                    TextColor="#1da7c1"
+                    TextColor="#00bfff"
                     BackgroundColor="#111111"
             Clicked="addCarBtn_Clicked">
         </Button>
 
     </VerticalStackLayout>
-
+    </Frame>
 </ContentPage>

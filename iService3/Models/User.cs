@@ -8,7 +8,7 @@ namespace iService3.Models
 {
     public partial class User
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string? Username { get; set; }
 
@@ -18,7 +18,7 @@ namespace iService3.Models
 
         public string? Token { get; set; }
 
-        public bool? NewsletterSub { get; set; }
+        public bool? NewsletterSub { get; set; } = false;
 
         public virtual ICollection<Appointment> Appointments { get; } = new List<Appointment>();
 

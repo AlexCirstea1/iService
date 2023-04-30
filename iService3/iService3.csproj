@@ -49,9 +49,12 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\account.svg" />
 	  <None Remove="Resources\Images\air_filter.svg" />
+	  <None Remove="Resources\Images\appLogo.png" />
+	  <None Remove="Resources\Images\avatar.png" />
 	  <None Remove="Resources\Images\battery.svg" />
 	  <None Remove="Resources\Images\brake.svg" />
 	  <None Remove="Resources\Images\oil.svg" />
+	  <None Remove="Resources\Images\pattern.svg" />
 	  <None Remove="Resources\Images\refresh.svg" />
 	  <None Remove="Resources\Images\tire.svg" />
 	  <None Remove="Resources\Images\tire_p.png" />
@@ -74,6 +77,9 @@
 	  <MauiXaml Update="Views\Account.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AccountInfo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CarForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -83,7 +89,19 @@
 	  <MauiXaml Update="Views\Home.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\RegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ResetPassword.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ScheduleAppointment.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Service.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ServicesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

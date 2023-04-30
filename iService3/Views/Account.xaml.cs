@@ -1,52 +1,66 @@
 using iService3.Models;
 using iService3.Services;
-using Microsoft.Extensions.Caching.Memory;
-using System.Text;
-using System.Text.Json;
+using iService3.Tools;
+using Newtonsoft.Json;
 
 namespace iService3.Views;
 
 public partial class Account : ContentPage
 {
     UserService userService = new UserService();
-
-    private MemoryCache cache = new MemoryCache(new MemoryCacheOptions());
-
-    public int currentUserID { get; set; }
-    public string currentUserName { get; set; }
-    public string currentUserToken { get; set; }
-
+    private SecureStorageToolKit _secureStorageToolKit;
     public Account()
     {
+        _secureStorageToolKit = new SecureStorageToolKit();
         InitializeComponent();
-        
-        
+        Load();
     }
-
-    private async void LoginButton_Clicked(object sender, EventArgs e)
+    private async void Load()
     {
-        string username = UsernameEntry.Text;
-        string password = PasswordEntry.Text;
-
-        User user = new User()
+        try
         {
-            Username = username,
-            Pass = password
-        };
-
-        var userData = await userService.Login(user);
-
-        currentUserID = userData.UserId;
-        currentUserName = userData.Username;
-        currentUserToken = userData.Token;
-
-
-
-        //var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(30));
-
-        //cache.Set("username", userName, cacheEntryOptions);
-        //cache.Set("userID", userID, cacheEntryOptions);
-        //cache.Set("token", token, cacheEntryOptions);
+            usernameLabel.Text = await _secureStorageToolKit.GetUsername();
+            string userJson = Preferences.Get("userData", "");
+            User userData = JsonConvert.DeserializeObject<User>(userJson);
+            NewsletterSwitch.IsToggled = (bool)userData.NewsletterSub;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
+    }
+    public static void GoToHomePage()
+    {
+        var mainPage = new MainPage();
+        Application.Current.MainPage = mainPage;
     }
 
+    private async void LogOutButton_OnClickedButton_Clicked(object sender, EventArgs e)
+    {
+        await SecureStorage.Default.SetAsync("isLogged", "false");
+        SecureStorage.Default.Remove("UserID");
+        SecureStorage.Default.Remove("Username");
+        SecureStorage.Default.Remove("Token");
+        userService.Logout();
+        GoToHomePage();
+    }
+
+    private void OnAvatarTapped(object sender, TappedEventArgs e)
+    {
+        DisplayAlert("Profile Picture Clicked", "clicked!", "Ok","Cancel");
+    }
+
+    private async void NewsletterSwitch_OnToggled(object sender, ToggledEventArgs e)
+    {
+        bool isToggledOn = e.Value;
+        var userid = Int32.Parse(await _secureStorageToolKit.GetUserID());
+        var success = await userService.UpdateNewsletterSub(userid, isToggledOn);
+    }
+
+    private async void Button_OnClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ResetPassword(Int32.Parse(await _secureStorageToolKit.GetUserID())));
+    }
 }
